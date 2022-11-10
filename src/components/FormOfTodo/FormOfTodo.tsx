@@ -9,18 +9,19 @@ import {
 } from "formik";
 
 import s from "./FormOfTodo.module.css";
+import { Todo } from "../../interfaces";
 
-interface MyFormValues {
-  firstName: string;
-  surname: string;
-}
+type AppProps = {
+  setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
+};
+const initialValues: Todo = { firstName: "", surName: "" };
 
-export const FormOfTodo: React.FC<{}> = () => {
-  const initialValues: MyFormValues = { firstName: "", surname: "" };
-
-  const submitHandler = (values: MyFormValues, actions: any) => {
+export const FormOfTodo = ({ setTodos }: AppProps) => {
+  const submitHandler = (values: Todo, actions: FormikHelpers<Todo>) => {
     console.log({ values, actions });
+    setTodos((prev) => [...prev, { ...values, key: Math.random() }]);
     actions.setSubmitting(true);
+    actions.resetForm();
   };
   return (
     <div className={s.container}>

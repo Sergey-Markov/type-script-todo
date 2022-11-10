@@ -11,6 +11,7 @@
   background-color: rgb(225, 255, 0);
   padding-left: 10px;
   padding-right: 10px;
+  padding-bottom: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -19,8 +20,10 @@
 }
 .formField{
   width: 80%;
-  padding: 0px;
+  height: 20px;
+  padding: 10px;
   border: "1 solid black";
+  border-radius: 4px;
   
 }
 .label {
