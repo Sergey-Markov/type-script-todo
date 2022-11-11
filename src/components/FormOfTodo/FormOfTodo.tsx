@@ -1,4 +1,3 @@
-import * as React from "react";
 import {
   Formik,
   FormikHelpers,
@@ -18,11 +17,14 @@ const initialValues: Todo = { firstName: "", surName: "" };
 
 export const FormOfTodo = ({ setTodos }: AppProps) => {
   const submitHandler = (values: Todo, actions: FormikHelpers<Todo>) => {
-    console.log({ values, actions });
-    setTodos((prev) => [...prev, { ...values, key: Math.random() }]);
+    if (values.firstName.trim() || values.surName.trim()) {
+      console.log(values);
+      setTodos((prev) => [...prev, { ...values, key: Math.random() }]);
+    }
     actions.setSubmitting(true);
     actions.resetForm();
   };
+
   return (
     <div className={s.container}>
       <h1>TypeScript-TodoList</h1>
@@ -36,6 +38,7 @@ export const FormOfTodo = ({ setTodos }: AppProps) => {
             name="firstName"
             placeholder="First Name"
             className={s.formField}
+            autoFocus={true}
           />
           <label htmlFor="surName" className={s.label}>
             Surname
@@ -47,7 +50,7 @@ export const FormOfTodo = ({ setTodos }: AppProps) => {
             className={s.formField}
           />
           <button type="submit" className={s.submitBtn}>
-            Submit
+            Add
           </button>
         </Form>
       </Formik>

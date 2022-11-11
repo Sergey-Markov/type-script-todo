@@ -3,3 +3,4 @@ export interface Todo {
   surName: string;
   key?: number;
 }
+export type DeleteHandler = (key?: number) => void;

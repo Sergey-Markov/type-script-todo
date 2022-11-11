@@ -7,10 +7,15 @@ import { Todo } from "./interfaces";
 
 function App() {
   const [todos, setTodos] = useState<Todo[]>([]);
+
+  const deleteTodoHandler = (key?: number) => {
+    const result = todos.filter((item) => item.key !== key);
+    setTodos(result);
+  };
   return (
     <div className="App">
       <FormOfTodo setTodos={setTodos} />
-      <ListOfNote todos={todos} />
+      <ListOfNote todos={todos} onClick={deleteTodoHandler} />
     </div>
   );
 }
